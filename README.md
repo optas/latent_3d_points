@@ -11,7 +11,7 @@ This work is based on our [arXiv tech report](https://arxiv.org/abs/1707.02392).
 ### Citation
 If you find our work useful in your research, please consider citing:
 
-	@article{qi2016pointnet,
+	@article{achlioptas2017latent_pc,
 	  title={Learning Representations And Generative Models For 3D Point Clouds},
 	  author={Achlioptas, Panos and Diamanti, Olga and Mitliagkas, Ioannis and Guibas, Leonidas J},
 	  journal={arXiv preprint arXiv:1707.02392},
