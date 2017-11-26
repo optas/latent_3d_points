@@ -1,0 +1,1 @@
+/usr/bin/c++    -fopenmp -O2 -g -DNDEBUG     CMakeFiles/flann_example_c.dir/flann_example.c.o  -o ../bin/flann_example_c -rdynamic ../lib/libflann.so.1.8.4 -Wl,-whole-archive ../lib/libflann_s.a -Wl,-no-whole-archive -Wl,-rpath,/orions4-zfs/projects/fhq/cuda/flann-1.8.4-src/build/lib: 
