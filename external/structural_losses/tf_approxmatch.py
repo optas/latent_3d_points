@@ -1,7 +1,7 @@
 import tensorflow as tf
 from tensorflow.python.framework import ops
 
-approxmatch_module = tf.load_op_library('/orions4-zfs/projects/optas/Git_Repos/tf_lab/external/Chamfer_EMD_tf1plus/tf_approxmatch_so.so')
+approxmatch_module = tf.load_op_library('./tf_approxmatch_so.so')
 
 def approx_match(xyz1,xyz2):
 	'''
