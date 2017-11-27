@@ -1,7 +1,10 @@
 import tensorflow as tf
 from tensorflow.python.framework import ops
+import os.path as osp
 
-nn_distance_module = tf.load_op_library('./tf_nndistance_so.so')
+base_dir = osp.dirname(osp.abspath(__file__))
+
+nn_distance_module = tf.load_op_library(osp.join(base_dir, 'tf_nndistance_so.so'))
 
 
 def nn_distance(xyz1, xyz2):

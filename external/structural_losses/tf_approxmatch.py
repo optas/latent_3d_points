@@ -1,7 +1,11 @@
 import tensorflow as tf
 from tensorflow.python.framework import ops
+import os.path as osp
 
-approxmatch_module = tf.load_op_library('./tf_approxmatch_so.so')
+base_dir = osp.dirname(osp.abspath(__file__))
+
+approxmatch_module = tf.load_op_library(osp.join(base_dir, 'tf_approxmatch_so.so'))
+
 
 def approx_match(xyz1,xyz2):
 	'''
