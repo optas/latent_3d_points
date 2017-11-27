@@ -70,7 +70,7 @@ def snc_category_to_synth_id():
     inv_map = {v: k for k, v in six.iteritems(d)}
     return inv_map
 
-def load_point_clouds_from_filenames(file_names, n_threads=1, loader=_load_crude_pcloud_and_model_id, verbose=False):
+def load_point_clouds_from_filenames(file_names, n_threads, loader, verbose=False):
     pc = loader(file_names[0])[0]
     pclouds = np.empty([len(file_names), pc.shape[0], pc.shape[1]], dtype=np.float32)
     model_names = np.empty([len(file_names)], dtype=object)
