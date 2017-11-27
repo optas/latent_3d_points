@@ -14,7 +14,7 @@ from tflearn.layers.conv import conv_1d, avg_pool_1d, highway_conv_1d
 from tflearn.layers.normalization import batch_normalization
 from tflearn.layers.core import fully_connected, dropout
 
-from .. fundamentals.utils import expand_scope_by_name, replicate_parameter_for_all_layers
+from . tf_utils import expand_scope_by_name, replicate_parameter_for_all_layers
 
 
 def encoder_with_convs_and_symmetry_new(in_signal, n_filters=[64, 128, 256, 1024], filter_sizes=[1], strides=[1],
