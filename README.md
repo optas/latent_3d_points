@@ -19,19 +19,14 @@ If you find our work useful in your research, please consider citing:
 	}
 
 
-<!-- 
 ### Installation
 
-Install <a href="https://www.tensorflow.org/get_started/os_setup" target="_blank">TensorFlow</a>. You may also need to install h5py. The code has been tested with Python 2.7, TensorFlow 1.0.1, CUDA 8.0 and cuDNN 5.1 on Ubuntu 14.04.
+Install <a href="https://www.tensorflow.org/get_started/os_setup" target="_blank">TensorFlow</a> and 
+<a href="http://tflearn.org/installation/" target="_blank">TFLearn</a>.
 
-If you are using PyTorch, you can find a third-party pytorch implementation <a href="https://github.com/fxia22/pointnet.pytorch" target="_blank">here</a>.
+The code has been tested with Python 2.7, TensorFlow 1.3.0, CUDA 8.0 and cuDNN 6.0 on Ubuntu 14.04.
 
-To install h5py for Python:
-```bash
-sudo apt-get install libhdf5-dev
-sudo pip install h5py
-```
-
+<--
 ### Usage
 To train a model to classify point clouds sampled from 3D shapes:
 
@@ -70,4 +65,5 @@ Our code is released under MIT License (see LICENSE file for details).
 
 ### TODO
 Add test script for evaluation on OOS shape or point cloud data.
- -->
+
+-->
