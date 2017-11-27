@@ -6,18 +6,13 @@ Created on January 26, 2017
 
 import time
 import tensorflow as tf
-import socket
 import os.path as osp
 
 from tflearn.layers.conv import conv_1d
 from tflearn.layers.core import fully_connected
-
 from general_tools.in_out.basics import create_dir
-
 from . autoencoder import AutoEncoder
 from . in_out import apply_augmentations
-from .. fundamentals.loss import Loss
-from .. fundamentals.inspect import count_trainable_parameters
 
 from external.structural_losses import nn_distance, approx_match, match_cost
 
@@ -70,15 +65,10 @@ class PointNetAutoEncoder(AutoEncoder):
             self.sess = tf.Session(config=config)
             self.sess.run(self.init)
 
-    def trainable_parameters(self):
-        return count_trainable_parameters(self.graph, name_space=self.name)
-
     def _create_loss(self):
         c = self.configuration
 
-        if c.loss == 'l2':
-            self.loss = Loss.l2_loss(self.x_reconstr, self.gt)
-        elif c.loss == 'chamfer':
+        if c.loss == 'chamfer':
             cost_p1_p2, _, cost_p2_p1, _ = nn_distance(self.x_reconstr, self.gt)
             self.loss = tf.reduce_mean(cost_p1_p2) + tf.reduce_mean(cost_p2_p1)
         elif c.loss == 'emd':
