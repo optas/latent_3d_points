@@ -61,7 +61,8 @@ The downloading script will download <a href="http://web.stanford.edu/~ericyi/pr
 Then you can run `train.py` and `test.py` in the `part_seg` folder for training and testing (computing mIoU for evaluation). -->
 
 ### License
-Our code is released under MIT License (see LICENSE file for details).
+This project is licensed under the terms of the MIT license (see LICENSE.md for details).
+
 
 <!-- ### TODO
 Add test script for evaluation on OOS shape or point cloud data. -->
