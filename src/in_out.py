@@ -8,7 +8,7 @@ from geo_tool.in_out.soup import load_ply
 import os
 import os.path as osp
 import re
-
+from six.moves import cPickle
 
 def create_dir(dir_path):
     ''' Creates a directory (or nested directories) if they don't exist.
@@ -17,6 +17,28 @@ def create_dir(dir_path):
         os.makedirs(dir_path)
 
     return dir_path
+
+
+
+def pickle_data(file_name, *args):
+    '''Using (c)Pickle to save multiple python objects in a single file.
+    '''
+    myFile = open(file_name, 'wb')
+    cPickle.dump(len(args), myFile, protocol=2)
+    for item in args:
+        cPickle.dump(item, myFile, protocol=2)
+    myFile.close()
+
+
+def unpickle_data(file_name):
+    '''Restore data previously saved with pickle_data().
+    '''
+    inFile = open(file_name, 'rb')
+    size = cPickle.load(inFile)
+    for _ in xrange(size):
+        yield cPickle.load(inFile)
+    inFile.close()
+
 
 
 def files_in_subdirs(top_dir, search_pattern):
