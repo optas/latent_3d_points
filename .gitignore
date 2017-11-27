@@ -1,4 +1,6 @@
+.project
 .ipynb_checkpoints
 .DS_Store
+.pydevproject
 *.pyc
 *.nfs*
