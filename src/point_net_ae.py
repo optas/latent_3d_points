@@ -14,7 +14,7 @@ from general_tools.in_out.basics import create_dir
 from . autoencoder import AutoEncoder
 from . in_out import apply_augmentations
 
-from external.structural_losses import nn_distance, approx_match, match_cost
+from .. external.structural_losses import nn_distance, approx_match, match_cost
 
 
 class PointNetAutoEncoder(AutoEncoder):
