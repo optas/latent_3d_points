@@ -26,7 +26,7 @@ Install <a href="https://www.tensorflow.org/get_started/os_setup" target="_blank
 
 Our code has been tested with Python 2.7, TensorFlow 1.3.0, TFLearn 0.3.2, CUDA 8.0 and cuDNN 6.0 on Ubuntu 14.04.
 
-
+<!-- 
 ### Usage
 To train a model to classify point clouds sampled from 3D shapes:
 
@@ -58,8 +58,8 @@ To train a model for object part segmentation, firstly download the data:
 
 The downloading script will download <a href="http://web.stanford.edu/~ericyi/project_page/part_annotation/index.html" target="_blank">ShapeNetPart</a> dataset (around 1.08GB) and our prepared HDF5 files (around 346MB).
 
-Then you can run `train.py` and `test.py` in the `part_seg` folder for training and testing (computing mIoU for evaluation).
--->
+Then you can run `train.py` and `test.py` in the `part_seg` folder for training and testing (computing mIoU for evaluation). -->
+
 ### License
 Our code is released under MIT License (see LICENSE file for details).
 
