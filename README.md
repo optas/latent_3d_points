@@ -19,7 +19,7 @@ If you find our work useful in your research, please consider citing:
 	}
 
 
-## Dependencies
+### Dependencies
 Main requirements:
 - Python 2.7+ with Numpy, Scipy and Matplotlib
 - [Tensorflow](https://www.tensorflow.org/get_started/os_setup)
@@ -28,20 +28,14 @@ Main requirements:
 Our code has been tested with Python 2.7, TensorFlow 1.3.0, TFLearn 0.3.2, CUDA 8.0 and cuDNN 6.0 on Ubuntu 14.04.
 
 
-## Installing the library
+### Installing the code
 
 Download the source code from the git repository:
 ```
 mkdir -p $HOME/work
 cd $HOME/work
-git clone https://github.com/HoME-Platform/home-platform.git
+git clone https://github.com/optas/latent_3d_points
 ```
-
-Note that the library must be in the PYTHONPATH environment variable for Python to be able to find it:
-```
-export PYTHONPATH=$HOME/work/home-platform:$PYTHONPATH 
-```
-This can also be added at the end of the configuration file $HOME/.bashrc
 
 
 <!-- 
