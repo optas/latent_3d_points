@@ -10,6 +10,7 @@ import os.path as osp
 import re
 from six.moves import cPickle
 
+
 def create_dir(dir_path):
     ''' Creates a directory (or nested directories) if they don't exist.
     '''
@@ -17,7 +18,6 @@ def create_dir(dir_path):
         os.makedirs(dir_path)
 
     return dir_path
-
 
 
 def pickle_data(file_name, *args):
@@ -87,10 +87,12 @@ snc_synth_id_to_category = {
     '04554684': 'washer',    '02858304': 'boat',       '02992529': 'cellphone'
 }
 
+
 def snc_category_to_synth_id():
     d = snc_synth_id_to_category
     inv_map = {v: k for k, v in six.iteritems(d)}
     return inv_map
+
 
 def load_point_clouds_from_filenames(file_names, n_threads, loader, verbose=False):
     pc = loader(file_names[0])[0]
