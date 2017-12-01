@@ -1,7 +1,7 @@
 ## Learning Representations And Generative Models For 3D Point Clouds
 Created by <a href="http://web.stanford.edu/~optas/" target="_blank">Panos Achlioptas</a>, <a href="http://web.stanford.edu/~diamanti/" target="_blank">Olga Diamanti</a>, <a href="http://mitliagkas.github.io" target="_blank">Ioannis Mitliagkas</a>, <a href="http://geometry.stanford.edu/member/guibas/" target="_blank">Leonidas J. Guibas</a>.
 
-<!-- ![prediction example](https://github.com/charlesq34/pointnet/blob/master/doc/teaser.png) -->
+<!-- ![prediction example](https://github.com/optas/latent_3d_points/blob/master/representative.jpg) -->
 
 ### Introduction
 This work is based on our [arXiv tech report](https://arxiv.org/abs/1707.02392). We proposed a novel deep net architecture for auto-encoding point clouds. The learned representations was amenable to xxx.
@@ -38,7 +38,7 @@ git clone https://github.com/optas/latent_3d_points
 ```
 
 
-<!-- 
+<!--
 ### Usage
 To train a model to classify point clouds sampled from 3D shapes:
 
@@ -78,4 +78,3 @@ This project is licensed under the terms of the MIT license (see LICENSE.md for 
 
 <!-- ### TODO
 Add test script for evaluation on OOS shape or point cloud data. -->
-
