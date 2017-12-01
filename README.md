@@ -1,7 +1,7 @@
 ## Learning Representations And Generative Models For 3D Point Clouds
 Created by <a href="http://web.stanford.edu/~optas/" target="_blank">Panos Achlioptas</a>, <a href="http://web.stanford.edu/~diamanti/" target="_blank">Olga Diamanti</a>, <a href="http://mitliagkas.github.io" target="_blank">Ioannis Mitliagkas</a>, <a href="http://geometry.stanford.edu/member/guibas/" target="_blank">Leonidas J. Guibas</a>.
 
-![representative](https://github.com/optas/latent_3d_points/blob/master/representative.jpg)
+![representative](https://github.com/optas/latent_3d_points/blob/master/representative.png)
 
 ### Introduction
 This work is based on our [arXiv tech report](https://arxiv.org/abs/1707.02392). We proposed a novel deep net architecture for auto-encoding point clouds. The learned representations was amenable to xxx.
