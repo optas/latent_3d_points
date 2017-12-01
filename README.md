@@ -29,7 +29,6 @@ Our code has been tested with Python 2.7, TensorFlow 1.3.0, TFLearn 0.3.2, CUDA 
 
 
 ### Installing the code
-
 Download the source code from the git repository:
 ```
 mkdir -p $HOME/work
@@ -77,4 +76,5 @@ This project is licensed under the terms of the MIT license (see LICENSE.md for 
 
 
 <!-- ### TODO
+<<<<<<< Updated upstream
 Add test script for evaluation on OOS shape or point cloud data. -->
