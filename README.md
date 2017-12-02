@@ -1,14 +1,14 @@
-## Learning Representations And Generative Models For 3D Point Clouds
+# Learning Representations And Generative Models For 3D Point Clouds
 Created by <a href="http://web.stanford.edu/~optas/" target="_blank">Panos Achlioptas</a>, <a href="http://web.stanford.edu/~diamanti/" target="_blank">Olga Diamanti</a>, <a href="http://mitliagkas.github.io" target="_blank">Ioannis Mitliagkas</a>, <a href="http://geometry.stanford.edu/member/guibas/" target="_blank">Leonidas J. Guibas</a>.
 
 ![representative](https://github.com/optas/latent_3d_points/blob/master/representative.jpg)
 
-### Introduction
+## Introduction
 This work is based on our [arXiv tech report](https://arxiv.org/abs/1707.02392). We proposed a novel deep net architecture for auto-encoding point clouds. The learned representations was amenable to xxx.
 <!-- You can also check our [project webpage](http://stanford.edu/~rqi/pointnet) for a deeper introduction. -->
 
 
-### Citation
+## Citation
 If you find our work useful in your research, please consider citing:
 
 	@article{achlioptas2017latent_pc,
@@ -19,8 +19,8 @@ If you find our work useful in your research, please consider citing:
 	}
 
 
-### Dependencies
-Main requirements:
+## Dependencies
+Requirements:
 - Python 2.7+ with Numpy, Scipy and Matplotlib
 - [Tensorflow](https://www.tensorflow.org/get_started/os_setup)
 - [TFLearn](http://tflearn.org/installation)
@@ -28,7 +28,7 @@ Main requirements:
 Our code has been tested with Python 2.7, TensorFlow 1.3.0, TFLearn 0.3.2, CUDA 8.0 and cuDNN 6.0 on Ubuntu 14.04.
 
 
-### Installing the code
+## Installation
 Download the source code from the git repository:
 ```
 mkdir -p $HOME/work
@@ -36,7 +36,7 @@ cd $HOME/work
 git clone https://github.com/optas/latent_3d_points
 ```
 
-To be able to train your own model you need first to compile the EMD/Chamfer losses. In latent_3d_points/external/structural_losses we have inculded the cuda implementations of [Fan et. al](https://github.com/fanhqme/PointSetGeneration).
+To be able to train your own model you need first to _compile_ the EMD/Chamfer losses. In latent_3d_points/external/structural_losses we have inculded the cuda implementations of [Fan et. al](https://github.com/fanhqme/PointSetGeneration).
 ```
 cd latent_3d_points/external
 
@@ -80,10 +80,5 @@ The downloading script will download <a href="http://web.stanford.edu/~ericyi/pr
 
 Then you can run `train.py` and `test.py` in the `part_seg` folder for training and testing (computing mIoU for evaluation). -->
 
-### License
+## License
 This project is licensed under the terms of the MIT license (see LICENSE.md for details).
-
-
-<!-- ### TODO
-<<<<<<< Updated upstream
-Add test script for evaluation on OOS shape or point cloud data. -->
