@@ -36,6 +36,15 @@ cd $HOME/work
 git clone https://github.com/optas/latent_3d_points
 ```
 
+To be able to train your own model you need first to compile the EMD/Chamfer losses. In latent_3d_points/external/structural_losses we have inculded the cuda implementations of [Fan et. al](https://github.com/fanhqme/PointSetGeneration).
+```
+cd latent_3d_points/external
+
+with your editor change the first three lines of the makefile to point on your nvcc, cudalib and tensorflow library.
+
+make
+```
+
 
 <!--
 ### Usage
