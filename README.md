@@ -43,9 +43,9 @@ with your editor change the first three lines of the makefile to point on your n
 make
 ```
 
-### Point-Cloud ShapeNet Data
+### Data Set
 We provide ~57K point-clouds, each sampled from a mesh model of 
-<a href="http://https://www.shapenet.org" target="_blank">ShapeNetCore</a> 
+<a href="https://www.shapenet.org" target="_blank">ShapeNetCore</a> 
 with (area) uniform sampling. To download them (1.4GB):
 ```
 cd latent_3d_points/
