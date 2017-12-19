@@ -4,3 +4,4 @@
 .pydevproject
 *.pyc
 *.nfs*
+data/*

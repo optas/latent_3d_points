@@ -4,7 +4,7 @@ Created by <a href="http://web.stanford.edu/~optas/" target="_blank">Panos Achli
 ![representative](https://github.com/optas/latent_3d_points/blob/master/doc/images/teaser.jpg)
 
 ## Introduction
-This work is based on our [arXiv tech report](https://arxiv.org/abs/1707.02392). We proposed a novel deep net architecture for auto-encoding point clouds. The learned representations was amenable to xxx.
+This work is based on our [arXiv tech report](https://arxiv.org/abs/1707.02392). We proposed a novel deep net architecture for auto-encoding point clouds. The learned representations were amenable to semantic part editting, shape analogies, linear classification and shape interpolations.
 <!-- You can also check our [project webpage](http://stanford.edu/~rqi/pointnet) for a deeper introduction. -->
 
 
@@ -34,7 +34,7 @@ Download the source code from the git repository:
 git clone https://github.com/optas/latent_3d_points
 ```
 
-To be able to train your own model you need first to _compile_ the EMD/Chamfer losses. In latent_3d_points/external/structural_losses we have inculded the cuda implementations of [Fan et. al](https://github.com/fanhqme/PointSetGeneration).
+To be able to train your own model you need first to _compile_ the EMD/Chamfer losses. In latent_3d_points/external/structural_losses we have included the cuda implementations of [Fan et. al](https://github.com/fanhqme/PointSetGeneration).
 ```
 cd latent_3d_points/external
 
@@ -43,6 +43,17 @@ with your editor change the first three lines of the makefile to point on your n
 make
 ```
 
+### Data Set
+We provide ~57K point-clouds, each sampled from a mesh model of 
+<a href="https://www.shapenet.org" target="_blank">ShapeNetCore</a> 
+with (area) uniform sampling. To download them (1.4GB):
+```
+cd latent_3d_points/
+./download_data.sh
+```
+The point-clouds will be stored in latent_3d_points/data/shape_net_core_uniform_samples_2048
+
+Use the function snc_category_to_synth_id, defined in src/in_out/, to map a class name such as "chair" to its synthetic_id: "03001627". Point-clouds of models of the same class are stored under a commonly named folder.
 
 <!--
 ### Usage
@@ -67,16 +78,7 @@ After the above training, we can evaluate the model and output some visualizatio
 Point clouds that are wrongly classified will be saved to `dump` folder in default. We visualize the point cloud by rendering it into three-view images.
 
 If you'd like to prepare your own data, you can refer to some helper functions in `utils/data_prep_util.py` for saving and loading HDF5 files.
-
-### Part Segmentation
-To train a model for object part segmentation, firstly download the data:
-
-    cd part_seg
-    sh download_data.sh
-
-The downloading script will download <a href="http://web.stanford.edu/~ericyi/project_page/part_annotation/index.html" target="_blank">ShapeNetPart</a> dataset (around 1.08GB) and our prepared HDF5 files (around 346MB).
-
-Then you can run `train.py` and `test.py` in the `part_seg` folder for training and testing (computing mIoU for evaluation). -->
+-->
 
 ## License
 This project is licensed under the terms of the MIT license (see LICENSE.md for details).
