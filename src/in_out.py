@@ -1,16 +1,15 @@
 import six
 import warnings
 import numpy as np
-from multiprocessing import Pool
-
-from general_tools.rla.three_d_transforms import rand_rotation_matrix
-from general_tools.in_out.basics import files_in_subdirs
-from geo_tool.in_out.soup import load_ply
-
 import os
 import os.path as osp
 import re
 from six.moves import cPickle
+from multiprocessing import Pool
+
+from .. external.general_tools.rla.three_d_transforms import rand_rotation_matrix
+from .. external.general_tools.in_out.basics import files_in_subdirs
+from .. external.python_plyfile.plyfile import PlyElement, PlyData
 
 
 def create_dir(dir_path):
@@ -42,7 +41,6 @@ def unpickle_data(file_name):
     inFile.close()
 
 
-
 def files_in_subdirs(top_dir, search_pattern):
     regex = re.compile(search_pattern)
     for path, _, files in os.walk(top_dir):
@@ -52,9 +50,30 @@ def files_in_subdirs(top_dir, search_pattern):
                 yield full_name
 
 
+def load_ply(file_name, with_faces=False, with_color=False):
+    ply_data = PlyData.read(file_name)
+    points = ply_data['vertex']
+    points = np.vstack([points['x'], points['y'], points['z']]).T
+    ret_val = [points]
+
+    if with_faces:
+        faces = np.vstack(ply_data['face']['vertex_indices'])
+        ret_val.append(faces)
+
+    if with_color:
+        r = np.vstack(ply_data['vertex']['red'])
+        g = np.vstack(ply_data['vertex']['green'])
+        b = np.vstack(ply_data['vertex']['blue'])
+        color = np.hstack((r, g, b))
+        ret_val.append(color)
+
+    if len(ret_val) == 1:  # Unwrap the list
+        ret_val = ret_val[0]
+
+    return ret_val
+
+
 def pc_loader(f_name):
-    '''Assumes that the point-clouds were created with:
-    '''
     tokens = f_name.split('/')
     model_id = tokens[-1].split('.')[0]
     synet_id = tokens[-2]
@@ -251,4 +270,3 @@ class PointCloudDataSet(object):
         self.num_examples = self.point_clouds.shape[0]
 
         return self
-    
