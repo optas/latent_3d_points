@@ -4,3 +4,6 @@
 [submodule "external/python-plyfile"]
 	path = external/python-plyfile
 	url = git@github.com:optas/python-plyfile.git
+[submodule "external/python_plyfile"]
+	path = external/python_plyfile
+	url = git@github.com:optas/python-plyfile.git
