@@ -1,3 +1,6 @@
 [submodule "external/general_tools"]
 	path = external/general_tools
 	url = git@github.com:optas/general_tools.git
+[submodule "external/python-plyfile"]
+	path = external/python-plyfile
+	url = git@github.com:optas/python-plyfile.git
