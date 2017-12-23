@@ -5,7 +5,7 @@ Created on September 2, 2017
 '''
 import numpy as np
 
-from . encoders_decoders import encoder_with_convs_and_symmetry, decoder_with_fc_only, encoder_with_convs_and_symmetry_new
+from . encoders_decoders import encoder_with_convs_and_symmetry, decoder_with_fc_only
 
 
 def mlp_architecture_ala_iclr_18(n_pc_points, bneck_size, bneck_post_mlp=False):
@@ -14,7 +14,7 @@ def mlp_architecture_ala_iclr_18(n_pc_points, bneck_size, bneck_post_mlp=False):
     if n_pc_points != 2048:
         raise ValueError()
 
-    encoder = encoder_with_convs_and_symmetry_new
+    encoder = encoder_with_convs_and_symmetry
     decoder = decoder_with_fc_only
 
     n_input = [n_pc_points, 3]
@@ -37,27 +37,6 @@ def mlp_architecture_ala_iclr_18(n_pc_points, bneck_size, bneck_post_mlp=False):
         decoder_args['layer_sizes'][0] = bneck_size
 
     return encoder, decoder, encoder_args, decoder_args
-
-
-def conv_architecture_ala_nips_17(n_pc_points):
-    if n_pc_points == 2048:
-        encoder_args = {'n_filters': [128, 128, 256, 512],
-                        'filter_sizes': [40, 20, 10, 10],
-                        'strides': [1, 2, 2, 1]
-                        }
-    else:
-        assert(False)
-
-    n_input = [n_pc_points, 3]
-
-    decoder_args = {'layer_sizes': [1024, 2048, np.prod(n_input)]}
-
-    res = {'encoder': encoder_with_convs_and_symmetry,
-           'decoder': decoder_with_fc_only,
-           'encoder_args': encoder_args,
-           'decoder_args': decoder_args
-           }
-    return res
 
 
 def default_train_params(single_class=True):

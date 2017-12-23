@@ -31,6 +31,14 @@ def replicate_parameter_for_all_layers(parameter, n_layers):
     return parameter
 
 
+def reset_tf_graph():
+    ''' Reset's all variables of default-tf graph. Useful for jupyter.
+    '''
+    if 'sess' in globals() and sess:
+        sess.close()
+    tf.reset_default_graph()
+    
+    
 def leaky_relu(alpha):
     if not (alpha < 1 and alpha > 0):
         raise ValueError()

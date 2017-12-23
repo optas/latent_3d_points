@@ -12,10 +12,7 @@ import numpy as np
 from tflearn import is_training
 
 from . in_out import create_dir, pickle_data, unpickle_data
- 
-from general_tools.simpletons import iterate_in_chunks
-
-from . in_out import apply_augmentations
+from . general_utils import apply_augmentations, iterate_in_chunks
 from . neural_net import Neural_Net
 
 model_saver_id = 'models.ckpt'
@@ -59,7 +56,6 @@ class Configuration():
         else:
             self.n_output = n_output
 
-        # Fancy - TODO factor seperetaly.
         self.consistent_io = consistent_io
 
     def exists_and_is_not_none(self, attribute):
@@ -96,7 +92,7 @@ class AutoEncoder(Neural_Net):
         Neural_Net.__init__(self, name, graph)
         self.is_denoising = configuration.is_denoising
         self.n_input = configuration.n_input
-        self.n_output = configuration.n_output   # TODO Re-factor for AP
+        self.n_output = configuration.n_output
 
         in_shape = [None] + self.n_input
         out_shape = [None] + self.n_output

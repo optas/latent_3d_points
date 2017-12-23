@@ -10,12 +10,17 @@ import os.path as osp
 
 from tflearn.layers.conv import conv_1d
 from tflearn.layers.core import fully_connected
-from general_tools.in_out.basics import create_dir
+
+from . in_out import create_dir
 from . autoencoder import AutoEncoder
-from . in_out import apply_augmentations
+from . general_utils import apply_augmentations
 
-from .. external.structural_losses import nn_distance, approx_match, match_cost
-
+try:    
+    from .. external.structural_losses.tf_nndistance import nn_distance
+    from .. external.structural_losses.tf_approxmatch import approx_match, match_cost
+except:
+    print('External Losses (Chamfer-EMD) cannot be loaded. Please install them first.')
+    
 
 class PointNetAutoEncoder(AutoEncoder):
     '''
@@ -32,14 +37,12 @@ class PointNetAutoEncoder(AutoEncoder):
             self.z = c.encoder(self.x, **c.encoder_args)
             self.bottleneck_size = int(self.z.get_shape()[1])
             layer = c.decoder(self.z, **c.decoder_args)
+            
             if c.exists_and_is_not_none('close_with_tanh'):
                 layer = tf.nn.tanh(layer)
-            if c.exists_and_is_not_none('do_completion'):                   # TODO Re-factor for AP
-                self.completion = tf.reshape(layer, [-1, c.n_completion[0], c.n_completion[1]])
-                self.x_reconstr = tf.concat(1, [self.x, self.completion])   # output is input + `completion`
-            else:
-                self.x_reconstr = tf.reshape(layer, [-1, self.n_output[0], self.n_output[1]])
 
+            self.x_reconstr = tf.reshape(layer, [-1, self.n_output[0], self.n_output[1]])
+            
             self.saver = tf.train.Saver(tf.global_variables(), max_to_keep=c.saver_max_to_keep)
 
             self._create_loss()
@@ -128,29 +131,13 @@ class PointNetAutoEncoder(AutoEncoder):
             epoch_loss += loss
         epoch_loss /= n_batches
         duration = time.time() - start_time
+        
+        if configuration.loss == 'emd':
+            epoch_loss /= len(train_data.point_clouds[0])
+        
         return epoch_loss, duration
 
     def gradient_of_input_wrt_loss(self, in_points, gt_points=None):
         if gt_points is None:
             gt_points = in_points
         return self.sess.run(tf.gradients(self.loss, self.x), feed_dict={self.x: in_points, self.gt: gt_points})
-
-    def gradient_of_input_wrt_latent_code(self, in_points, code_dims=None):
-        ''' batching this is ok. but if you add a list of code_dims the problem is on the way the tf.gradient will
-        gather the gradients from each dimension, i.e., by default it just adds them. This is problematic since for my
-        research I would need at least the abs sum of them.
-        '''
-        b_size = len(in_points)
-        n_dims = len(code_dims)
-
-        row_idx = tf.range(b_size, dtype=tf.int32)
-        row_idx = tf.reshape(tf.tile(row_idx, [n_dims]), [n_dims, -1])
-        row_idx = tf.transpose(row_idx)
-        col_idx = tf.constant(code_dims, dtype=tf.int32)
-        col_idx = tf.reshape(tf.tile(col_idx, [b_size]), [b_size, -1])
-        coords = tf.transpose(tf.pack([row_idx, col_idx]))
-
-        if b_size == 1:
-            coords = coords[0]
-        ys = tf.gather_nd(self.z, coords)
-        return self.sess.run(tf.gradients(ys, self.x), feed_dict={self.x: in_points})[0]

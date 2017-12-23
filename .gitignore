@@ -5,3 +5,5 @@
 *.pyc
 *.nfs*
 data/*
+external/structural_losses/*.o
+external/structural_losses/*.so
