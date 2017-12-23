@@ -3,11 +3,11 @@ Created by <a href="http://web.stanford.edu/~optas/" target="_blank">Panos Achli
 
 ![representative](https://github.com/optas/latent_3d_points/blob/master/doc/images/teaser.jpg)
 
-# !! Code will be fully functioning (AE and GANs) by _December 26, 2017_. Please stay stuned.
+# !More instructional notebooks are coming. Please stay stuned.
 
 ## Introduction
 This work is based on our [arXiv tech report](https://arxiv.org/abs/1707.02392). We proposed a novel deep net architecture for auto-encoding point clouds. The learned representations were amenable to semantic part editting, shape analogies, linear classification and shape interpolations.
-<!-- You can also check our [project webpage](http://stanford.edu/~rqi/pointnet) for a deeper introduction. -->
+<!-- You can also check our [project webpage](http://stanford.edu/~optas/) for a deeper introduction. -->
 
 
 ## Citation
@@ -40,7 +40,7 @@ To be able to train your own model you need first to _compile_ the EMD/Chamfer l
 ```
 cd latent_3d_points/external
 
-with your editor change the first three lines of the makefile to point on your nvcc, cudalib and tensorflow library.
+with your editor modify the first three lines of the makefile to point to your nvcc, cudalib and tensorflow library.
 
 make
 ```
@@ -57,30 +57,12 @@ The point-clouds will be stored in latent_3d_points/data/shape_net_core_uniform_
 
 Use the function snc_category_to_synth_id, defined in src/in_out/, to map a class name such as "chair" to its synthetic_id: "03001627". Point-clouds of models of the same class are stored under a commonly named folder.
 
-<!--
+
 ### Usage
-To train a model to classify point clouds sampled from 3D shapes:
+To train the basic point-cloud AE look at:
 
-    python train.py
+    latent_3d_points/notebooks/train_single_class_ae.ipynb
 
-Log files and network parameters will be saved to `log` folder in default. Point clouds of <a href="http://modelnet.cs.princeton.edu/" target="_blank">ModelNet40</a> models in HDF5 files will be automatically downloaded (416MB) to the data folder. Each point cloud contains 2048 points uniformly sampled from a shape surface. Each cloud is zero-mean and normalized into an unit sphere. There are also text files in `data/modelnet40_ply_hdf5_2048` specifying the ids of shapes in h5 files.
-
-To see HELP for the training script:
-
-    python train.py -h
-
-We can use TensorBoard to view the network architecture and monitor the training progress.
-
-    tensorboard --logdir log
-
-After the above training, we can evaluate the model and output some visualizations of the error cases.
-
-    python evaluate.py --visu
-
-Point clouds that are wrongly classified will be saved to `dump` folder in default. We visualize the point cloud by rendering it into three-view images.
-
-If you'd like to prepare your own data, you can refer to some helper functions in `utils/data_prep_util.py` for saving and loading HDF5 files.
--->
 
 ## License
 This project is licensed under the terms of the MIT license (see LICENSE.md for details).
