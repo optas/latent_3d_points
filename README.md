@@ -3,7 +3,7 @@ Created by <a href="http://web.stanford.edu/~optas/" target="_blank">Panos Achli
 
 ![representative](https://github.com/optas/latent_3d_points/blob/master/doc/images/teaser.jpg)
 
-# !More instructional notebooks are coming. Please stay stuned.
+## More instructional notebooks are coming. Please stay stuned.
 
 ## Introduction
 This work is based on our [arXiv tech report](https://arxiv.org/abs/1707.02392). We proposed a novel deep net architecture for auto-encoding point clouds. The learned representations were amenable to semantic part editting, shape analogies, linear classification and shape interpolations.
