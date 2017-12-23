@@ -40,7 +40,8 @@ To be able to train your own model you need first to _compile_ the EMD/Chamfer l
 ```
 cd latent_3d_points/external
 
-with your editor modify the first three lines of the makefile to point to your nvcc, cudalib and tensorflow library.
+with your editor modify the first three lines of the makefile to point to 
+your nvcc, cudalib and tensorflow library.
 
 make
 ```
@@ -59,7 +60,7 @@ Use the function snc_category_to_synth_id, defined in src/in_out/, to map a clas
 
 
 ### Usage
-To train the basic point-cloud AE look at:
+To train a point-cloud AE look at:
 
     latent_3d_points/notebooks/train_single_class_ae.ipynb
 
