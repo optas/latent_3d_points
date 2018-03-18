@@ -1,4 +1,4 @@
-# Learning Representations And Generative Models For 3D Point Clouds
+# Learning Representations and Generative Models For 3D Point Clouds
 Created by <a href="http://web.stanford.edu/~optas/" target="_blank">Panos Achlioptas</a>, <a href="http://web.stanford.edu/~diamanti/" target="_blank">Olga Diamanti</a>, <a href="http://mitliagkas.github.io" target="_blank">Ioannis Mitliagkas</a>, <a href="http://geometry.stanford.edu/member/guibas/" target="_blank">Leonidas J. Guibas</a>.
 
 ![representative](https://github.com/optas/latent_3d_points/blob/master/doc/images/teaser.jpg)
@@ -63,6 +63,11 @@ Use the function snc_category_to_synth_id, defined in src/in_out/, to map a clas
 To train a point-cloud AE look at:
 
     latent_3d_points/notebooks/train_single_class_ae.ipynb
+
+To use the evaluation metrics (MMD, Coverage, JSD) between two point-cloud sets look at:
+
+    latent_3d_points/notebooks/compute_evaluation_metrics.ipynb
+
 
 
 ## License
