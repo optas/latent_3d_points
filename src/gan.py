@@ -8,11 +8,8 @@ import os.path as osp
 import warnings
 import tensorflow as tf
 
-
-from general_tools.in_out.basics import create_dir
-
-from .. neural_net import Neural_Net
-
+from . neural_net import Neural_Net
+from . tf_utils import safe_log
 
 class GAN(Neural_Net):
 
@@ -42,3 +39,18 @@ class GAN(Neural_Net):
         noise = self.generator_noise_distribution(n_samples, self.noise_dim, **noise_params)
         feed_dict = {self.noise: noise}
         return self.sess.run([self.generator_out], feed_dict=feed_dict)[0]
+    
+    def vanilla_gan_objective(self, real_prob, synthetic_prob, use_safe_log=True):
+        if use_safe_log:
+            log = safe_log
+        else:
+            log = tf.log
+
+        loss_d = tf.reduce_mean(-log(real_prob) - log(1 - synthetic_prob))
+        loss_g = tf.reduce_mean(-log(synthetic_prob))
+        return loss_d, loss_g
+
+    def w_gan_objective(self, real_logit, synthetic_logit):
+        loss_d = tf.reduce_mean(synthetic_logit) - tf.reduce_mean(real_logit)
+        loss_g = -tf.reduce_mean(synthetic_logit)
+        return loss_d, loss_g
