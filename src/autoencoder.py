@@ -299,3 +299,16 @@ class AutoEncoder(Neural_Net):
 
         embedding = np.vstack(embedding)
         return feed, embedding, ids
+    
+    
+    def get_latent_codes(self, pclouds, batch_size=100):
+        ''' Convenience wrapper of self.transform to get the latent (bottle-neck) codes for a set of input point 
+        clouds.
+        Args:
+            pclouds (N, K, 3) numpy array of N point clouds with K points each.
+        '''
+        latent_codes = []
+        idx = np.arange(len(pclouds))
+        for b in iterate_in_chunks(idx, batch_size):
+            latent_codes.append(self.transform(pclouds[b]))
+        return np.vstack(latent_codes)
