@@ -1,5 +1,5 @@
 '''
-Created on Apr 27, 2017
+Created on 2018
 
 Author: Achlioptas Panos (Github ID: optas)
 '''
@@ -57,10 +57,6 @@ class Vanilla_GAN(GAN):
         return np.random.normal(mu, sigma, (n_samples, ndims))
 
     def _single_epoch_train(self, train_data, batch_size, noise_params):
-        '''
-        see: http://blog.aylien.com/introduction-generative-adversarial-networks-code-tensorflow/
-             http://wiseodd.github.io/techblog/2016/09/17/gan-tensorflow/
-        '''
         n_examples = train_data.num_examples
         epoch_loss_d = 0.
         epoch_loss_g = 0.

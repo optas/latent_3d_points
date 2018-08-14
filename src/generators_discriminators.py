@@ -14,7 +14,7 @@ from . tf_utils import leaky_relu
 from . tf_utils import expand_scope_by_name
 
 
-def mlp_discriminator(in_signal, non_linearity=tf.nn.relu, reuse=False, scope=None, b_norm=[True], dropout_prob=None):
+def mlp_discriminator(in_signal, non_linearity=tf.nn.relu, reuse=False, scope=None, b_norm=True, dropout_prob=None):
     ''' used in nips submission.
     '''
     encoder_args = {'n_filters': [64, 128, 256, 256, 512], 'filter_sizes': [1, 1, 1, 1, 1], 'strides': [1, 1, 1, 1, 1]}
@@ -32,7 +32,7 @@ def mlp_discriminator(in_signal, non_linearity=tf.nn.relu, reuse=False, scope=No
     return d_prob, d_logit
 
 
-def point_cloud_generator(z, pc_dims, layer_sizes=[64, 128, 512, 1024], non_linearity=tf.nn.relu, b_norm=[False], b_norm_last=False, dropout_prob=None):
+def point_cloud_generator(z, pc_dims, layer_sizes=[64, 128, 512, 1024], non_linearity=tf.nn.relu, b_norm=False, b_norm_last=False, dropout_prob=None):
     ''' used in nips submission.
     '''
     
@@ -42,6 +42,7 @@ def point_cloud_generator(z, pc_dims, layer_sizes=[64, 128, 512, 1024], non_line
     
     out_signal = decoder_with_fc_only(z, layer_sizes=layer_sizes, non_linearity=non_linearity, b_norm=b_norm)
     out_signal = non_linearity(out_signal)
+    
     if dropout_prob is not None:
         out_signal = dropout(out_signal, dropout_prob)
 
@@ -70,33 +71,33 @@ def convolutional_discriminator(in_signal, non_linearity=tf.nn.relu,
     return d_prob, d_logit
 
 
-def latent_code_generator(z, out_dim, layer_sizes=[64, 128], b_norm=[False]):
+def latent_code_generator(z, out_dim, layer_sizes=[64, 128], b_norm=False):
     layer_sizes = layer_sizes + out_dim
     out_signal = decoder_with_fc_only(z, layer_sizes=layer_sizes, b_norm=b_norm)
     out_signal = tf.nn.relu(out_signal)
     return out_signal
 
 
-def latent_code_discriminator(in_singnal, layer_sizes=[64, 128, 256, 256, 512], b_norm=[False], non_linearity=tf.nn.relu, reuse=False, scope=None):
+def latent_code_discriminator(in_singnal, layer_sizes=[64, 128, 256, 256, 512], b_norm=False, non_linearity=tf.nn.relu, reuse=False, scope=None):
     layer_sizes = layer_sizes + [1]
     d_logit = decoder_with_fc_only(in_singnal, layer_sizes=layer_sizes, non_linearity=non_linearity, b_norm=b_norm, reuse=reuse, scope=scope)
     d_prob = tf.nn.sigmoid(d_logit)
     return d_prob, d_logit
 
 
-def latent_code_discriminator_two_layers(in_singnal, layer_sizes=[256, 512], b_norm=[False], non_linearity=tf.nn.relu, reuse=False, scope=None):
-    ''' used in nips submission.
+def latent_code_discriminator_two_layers(in_signal, layer_sizes=[256, 512], b_norm=False, non_linearity=tf.nn.relu, reuse=False, scope=None):
+    ''' Used in ICML submission.
     '''
     layer_sizes = layer_sizes + [1]
-    d_logit = decoder_with_fc_only(in_singnal, layer_sizes=layer_sizes, non_linearity=non_linearity, b_norm=b_norm, reuse=reuse, scope=scope)
+    d_logit = decoder_with_fc_only(in_signal, layer_sizes=layer_sizes, non_linearity=non_linearity, b_norm=b_norm, reuse=reuse, scope=scope)
     d_prob = tf.nn.sigmoid(d_logit)
     return d_prob, d_logit
 
 
-def latent_code_generator_two_layers(z, out_dim, layer_sizes=[128], b_norm=[False]):
-    ''' used in nips submission.
+def latent_code_generator_two_layers(z, out_dim, layer_sizes=[128], b_norm=False):
+    ''' Used in ICML submission.
     '''
     layer_sizes = layer_sizes + out_dim
     out_signal = decoder_with_fc_only(z, layer_sizes=layer_sizes, b_norm=b_norm)
-    out_signal = tf.nn.relu(out_signal)  # I could have added batch-norm before relu here.
+    out_signal = tf.nn.relu(out_signal)
     return out_signal
