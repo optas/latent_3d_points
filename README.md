@@ -64,6 +64,14 @@ To train a point-cloud AE look at:
 
     latent_3d_points/notebooks/train_single_class_ae.ipynb
 
+To train a latent-GAN based on a pre-trained AE look at:
+
+    latent_3d_points/notebooks/train_latent_gan.ipynb
+
+To train a raw-GAN:
+
+    latent_3d_points/notebooks/train_raw_gan.ipynb    
+
 To use the evaluation metrics (MMD, Coverage, JSD) between two point-cloud sets look at:
 
     latent_3d_points/notebooks/compute_evaluation_metrics.ipynb
